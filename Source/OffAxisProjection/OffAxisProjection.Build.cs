@@ -1,20 +1,16 @@
 // Some copyright should be here...
 
 using UnrealBuildTool;
+using System.IO;
 
 public class OffAxisProjection : ModuleRules
 {
 	public OffAxisProjection(ReadOnlyTargetRules Target) : base(Target)
 	{
-		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		
-		PublicIncludePaths.AddRange(
-			new string[] {
-				"OffAxisProjection/Public"
-				
-				// ... add public include paths required here ...
-			}
-			);
+        //PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+        PrivatePCHHeaderFile = "Public/OffAxisProjection.h";
+
+        PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "Public"));
 				
 		
 		PrivateIncludePaths.AddRange(
@@ -30,10 +26,13 @@ public class OffAxisProjection : ModuleRules
 			new string[]
 			{
 				"Core",
-				
-				// ... add other public dependencies that you statically link with here ...
+                "Slate",
+                "SlateCore",
+                "InputCore",
+                "UMG",
+                // ... add other public dependencies that you statically link with here ...
 			}
-			);
+            );
 			
 		
 		PrivateDependencyModuleNames.AddRange(
@@ -41,11 +40,10 @@ public class OffAxisProjection : ModuleRules
 			{
 				"CoreUObject",
 				"Engine",
-				"Slate",
-				"SlateCore",
-                "ShaderCore",
-                "HeadMountedDisplay",
-                 "InputCore",
+			    "ShaderCore",
+                "HeadMountedDisplay",        
+                "RHI",
+                "RenderCore",
 				// ... add private dependencies that you statically link with here ...	
 			}
             );
